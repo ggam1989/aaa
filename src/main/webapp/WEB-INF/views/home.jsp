@@ -37,7 +37,6 @@
 	            </div>
 	          </div>
 	        </div>
-	
 	      </div>
 	    </div>
 	    
@@ -50,7 +49,7 @@
       </ol>
       <div class="carousel-inner">
         <div class="item active" align="center">
-          <img src="http://tv01.search.naver.net/ugc?t=252x448&q=http://imgnews.naver.com/image/004/2013/10/18/A201310180149_1_59_20131018105002.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
+          <img src="http://tv01.search.naver.net/ugc?t=252Wx448&q=http://imgnews.naver.com/image/004/2013/10/18/A201310180149_1_59_20131018105002.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
             </div>
@@ -69,6 +68,13 @@
             <div class="carousel-caption">
             </div>
           </div>
+        </div>
+        <div class ="item" align="center">
+        	<img src="http://tv01.search.naver.net/ugc?t=252x448&q=http://imgnews.naver.com/image/009/2010/09/30/0090002328683_0.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Four slide" alt="Four slide">
+        	<div class="container">
+        		<div class="carousel-caption">
+        		</div>
+        	</div>
         </div>
       </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -125,9 +131,9 @@ $(function(){
 			var show = '<table>';
 			for(var i=0; i<search.length;i++){
 				show += '<tr>';
-				show += '<td>'+search[i].pfname+'</td>';
-				show += '<td>'+search[i].pfcp+'</td>';
-				show += '<td>'+search[i].pfmw+'<td>';
+				show += '<td>'+search[i].name+'</td>';
+				show += '<td>'+search[i].company+'</td>';
+				show += '<td>'+search[i].majorwork+'<td>';
 				show += '</tr>';
 			}
 			show += '</table>';
@@ -144,9 +150,9 @@ $(function(){
 			var profile = data.profileList;
 			var show = '<table class="table table-bordered table-striped">';
 			show +='<thead>';
-			show +='<th>name</th>';
+			show +='<th>'+show.name+'</th>';
 			show +='<th>company</th>';
-			show +='<th>majorwork</th>';
+			show +='<th>'+show.majorwork+'</th>';
 			show +='<th></th>';
 			show +='<th></th>';
 			show +='</thead>';
@@ -192,9 +198,9 @@ $(function(){
 				url : "profile/" +id
 			}).done(function(data){
 				var id = data.idKey;
-				$('#pfname').val(id.pfname);
-				$('#pfcp').val(id.pfcp);
-				$('#pfmw').val(id.pfmw);
+				$('#pfname').val(id.name);
+				$('#pfcp').val(id.company);
+				$('#pfmw').val(id.majorwork);
 				$('#link').val(id.link);
 			});
 		}

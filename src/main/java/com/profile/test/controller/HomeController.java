@@ -31,7 +31,6 @@ public class HomeController {
 
 	@RequestMapping(value = "profile", method = RequestMethod.POST)
 	public String saveprofile(ProfileModel profileModel) {
-		System.out.println(profileModel.getName());
 		profileService.save(profileModel);
 		return "jsonView";
 	}
