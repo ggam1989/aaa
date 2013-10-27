@@ -9,20 +9,24 @@ import javax.persistence.Id;
 
 @Entity
 public class ProfileModel implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -195188855858606186L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	private String name;
-	private int age;
+	private String company;
 	private String majorwork;
-	public ProfileModel(Long id, String name, int age, String majorwork) {
+	private String link;
+	
+	
+	public ProfileModel(Long id, String name, String company, String majorwork,String link) {
 		this.id = id;
 		this.name = name;
-		this.age = age;
+		this.company  = company ;
 		this.majorwork = majorwork;
+		this.link = link;
 	}
 	public ProfileModel() {
 	}
@@ -38,17 +42,23 @@ public class ProfileModel implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getAge() {
-		return age;
+	public String getCompany() {
+		return company;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setCompany(String company) {
+		this.company  = company ;
 	}
 	public String getMajorwork() {
 		return majorwork;
 	}
 	public void setMajorwork(String majorwork) {
 		this.majorwork = majorwork;
+	}
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
 	}
 	
 }

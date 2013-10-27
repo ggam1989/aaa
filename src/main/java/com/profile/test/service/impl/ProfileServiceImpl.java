@@ -2,7 +2,8 @@ package com.profile.test.service.impl;
 
 import java.util.List;
 
-import org.hibernate.envers.Audited;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.profile.test.model.ProfileModel;
@@ -11,9 +12,11 @@ import com.profile.test.service.ProfileService;
 
 @Service
 public class ProfileServiceImpl implements ProfileService{
-	@Audited private ProfileRepository profileRepository;
+	@Autowired private ProfileRepository profileRepository;
 
+	
 	@Override
+	@Cacheable(value="listCache")
 	public List<ProfileModel> getList() {
 		return profileRepository.findAll();
 	}
@@ -35,6 +38,6 @@ public class ProfileServiceImpl implements ProfileService{
 
 	@Override
 	public List<ProfileModel> findByStar(String searchStar) {
-		return profileRepository.findByStar(searchStar);
+		return profileRepository.findByNameLike("%"+searchStar+"%");
 	}
 }

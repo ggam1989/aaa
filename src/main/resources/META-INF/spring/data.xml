@@ -15,7 +15,7 @@
         xmlns="http://www.springframework.org/schema/beans">
 
         <bean p:maxWait="-1" p:maxIdle="5" p:minIdle="5" p:maxActive="5"
-                p:initialSize="5" p:password="0000" p:username="root"
+                p:initialSize="5" p:password="" p:username="root"
                 p:url="jdbc:mysql://127.0.0.1:3306/profile" p:driverClassName="com.mysql.jdbc.Driver"
                 destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource"
                 id="dataSource" />

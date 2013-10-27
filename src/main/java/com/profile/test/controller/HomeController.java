@@ -2,7 +2,7 @@ package com.profile.test.controller;
 
 import java.util.List;
 
-import org.hibernate.envers.Audited;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +14,7 @@ import com.profile.test.service.ProfileService;
 
 @Controller
 public class HomeController {
-	@Audited
+	@Autowired
 	private ProfileService profileService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -31,6 +31,7 @@ public class HomeController {
 
 	@RequestMapping(value = "profile", method = RequestMethod.POST)
 	public String saveprofile(ProfileModel profileModel) {
+		System.out.println(profileModel.getName());
 		profileService.save(profileModel);
 		return "jsonView";
 	}
