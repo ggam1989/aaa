@@ -12,5 +12,5 @@ Framework : Spring,Spring MVC, Spring Data jpa, hibernate <br/>
 Etc : git, maven2, jquery, bootstrap, jsp, servlet, ajax, json, ehcache <br/>
 </p>
 
-![alt tag](screenshot/screenshot1.png)
+![alt tag](screenshot/screenshot01.png)
 
