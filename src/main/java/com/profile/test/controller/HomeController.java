@@ -17,7 +17,7 @@ public class HomeController {
 	@Autowired
 	private ProfileService profileService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "home"}, method = RequestMethod.GET)
 	public String home() {
 		return "home";
 	}
@@ -56,7 +56,7 @@ public class HomeController {
 	@RequestMapping(value = "profile/search", method = RequestMethod.GET)
 	public String searchStar(String searchStar,ModelMap map){
 		List<ProfileModel> search = profileService.findByStar(searchStar);
-		map.put("StarKey",search);
+		map.put("starKey",search);
 		return "jsonView";
 	}
 }

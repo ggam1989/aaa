@@ -25,12 +25,12 @@
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	              </button>
-	              <a class="navbar-brand" href="#">Star Profile</a>
+	              <a class="navbar-brand" href="#">Star Information</a>
 	            </div>
 	            <div class="navbar-collapse collapse">
 	              <ul class="nav navbar-nav">
-	                <li class="active"><a href="#">Home</a></li>
-	                <li><a href="#about">About</a></li>
+	                <li class="active"><a href="home">Star Profile</a></li>
+	                <li><a href="#about">Movie</a></li>
 	                <li><a href="#contact">Contact</a></li>
 	                <li class="dropdown">
 	              </ul>
@@ -40,50 +40,10 @@
 	      </div>
 	    </div>
 	    
-	    <div id="myCarousel" class="carousel slide">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="item active" align="center">
-          <img src="http://tv01.search.naver.net/ugc?t=252Wx448&q=http://imgnews.naver.com/image/004/2013/10/18/A201310180149_1_59_20131018105002.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-            </div>
-          </div>
-        </div>
-        <div class="item" align="center">
-          <img src="http://tv01.search.naver.net/ugc?t=252x448&q=http://blogfiles.naver.net/20130423_262/urbanclass_1366645534476uANX2_JPEG/30.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Second slide" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-            </div>
-          </div>
-        </div>
-        <div class="item" align="center">
-          <img src="http://tv01.search.naver.net/ugc?t=252x448&q=http://cafefiles.naver.net/20121219_186/www_hoho_1355885364163A2j7f_JPEG/02.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Third slide" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-            </div>
-          </div>
-        </div>
-        <div class ="item" align="center">
-        	<img src="http://tv01.search.naver.net/ugc?t=252x448&q=http://imgnews.naver.com/image/009/2010/09/30/0090002328683_0.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Four slide" alt="Four slide">
-        	<div class="container">
-        		<div class="carousel-caption">
-        		</div>
-        	</div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div>
-
+	    
  <div class="container">
  	<div class="row">
- 		<div class="col-xs-6 col-md-4">
+ 		<div class="col-md-offset-3 col-xs-6 col-md-4">
 			<table class="table">
 				<tr class = "active">
 					<td>name : </td>
@@ -97,27 +57,26 @@
 					<td>majorwork : </td>
 					<td> <input id="pfmw" type = "text"></td>
 				</tr>
-				<tr class ="active">
-					<td>link : </td>
-					<td><input id="link" type = "text"></td>
-				</tr>
 			</table>
+			<button id="saveBt" class="btn btn-primary">Save</button>
  		</div>
-	 	<div class="col-xs-6 col-md-4">
-	 	</div>
  	</div>
  	<div class="row">
-		<button id="saveBt" class="btn btn-primary">Save</button>
- 	</div>
+		<h3 id="tables-contextual-classes">Star ProFile</h3>
+		<div id = "profileSection"></div>
+	</div>
+	
  	<div class="row">
-		<input type="text" id="search">
-		<button id="searchBt" class="btn btn-success">SearCh</button>
- 	</div>
- 	<div class="row">
-		<h2 id="tables-contextual-classes">Star ProFile</h2>
-		   <div id = "profileSection"></div>
+ 		<div class = "col-xs-6 col-md-4">
+			<input type="text" id="search">
+			<button id="searchBt" class="btn btn-success">SearCh</button>
+		</div>
+ 		<div class="col-xs-6">
+			<iframe src="http://naver.com" width="700" height="300"></iframe>
  		</div>
-</div>
+ 	</div>
+ </div>
+
 
 
 <script type="text/javascript">
@@ -125,15 +84,15 @@ $(function(){
 	var currentId = 0;
 	$('#searchBt').on('click',function(){
 		var searchStar = $('#search').val();
-		$('$search').val('');
-		$.getJSON("profile/search?searchStar="+searchStar,function(data){
+		$('#search').val('');
+		$.getJSON("profile/search?"+$.param({searchStar : searchStar}),function(data){
 			var search = data.starKey;
-			var show = '<table>';
+			var show = '<table class="table table-bordered table-striped">';
 			for(var i=0; i<search.length;i++){
 				show += '<tr>';
-				show += '<td>'+search[i].name+'</td>';
-				show += '<td>'+search[i].company+'</td>';
-				show += '<td>'+search[i].majorwork+'<td>';
+				show += '<td><a href="http://search.naver.com/search.naver?where=nexearch&query=' + search[i].name + '&sm=top_hty&fbm=1&ie=utf8">' + search[i].name + '</a></td>';
+				show += '<td><a href="http://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&ie=utf8&query=' + search[i].company + '&x=-595&y=-51">' + search[i].company+'</a></td>';
+				show += '<td>'+search[i].majorwork+'</td>';
 				show += '</tr>';
 			}
 			show += '</table>';
@@ -150,19 +109,17 @@ $(function(){
 			var profile = data.profileList;
 			var show = '<table class="table table-bordered table-striped">';
 			show +='<thead>';
-			show +='<th>'+show.name+'</th>';
-			show +='<th>company</th>';
-			show +='<th>'+show.majorwork+'</th>';
-			show +='<th></th>';
-			show +='<th></th>';
+				show +='<th>name</th>';
+				show +='<th>company</th>';
+				show +='<th>majorwork</th>';
 			show +='</thead>';
 			
 			show +="<tbody>";
 
 			for(var i=0; i<profile.length; i++){
 				show += '<tr>';
-				show += '<td><a href="'+profile[i].link+'">'+profile[i].name+'</a></td>';
-				show += '<td>'+profile[i].company+'</td>';
+				show += '<td><a href="http://search.naver.com/search.naver?where=nexearch&query=' + profile[i].name + '&sm=top_hty&fbm=1&ie=utf8">' + profile[i].name + '</a></td>';
+				show += '<td><a href="http://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&ie=utf8&query=' + profile[i].company + '&x=-595&y=-51">'+profile[i].company+'</a></td>';
 				show += '<td>'+profile[i].majorwork+'</td>';
 				show += '<td><a href="#" class="remove" profileId="'+profile[i].id+'">X</a></td>';
 				show += '<td><a href="#" class="update" profileId="'+profile[i].id+'">U</a></td>';
@@ -174,21 +131,21 @@ $(function(){
 		});
 	};
 	
-		$('#profileSection').on('click', function(event){
-			var target = $(event.target);
-			if(target.hasClass('remove')){
-				var datas={
-						'_method' : 'DELETE'
-				};
-				var id = target.attr('profileId');
-				$.ajax({
-					dataType : "json",
-					type : "POST",
-					url : "profile/"+id,
-					data : datas
-				}).done(function(){
-					profile();
-				});
+	$('#profileSection').on('click', function(event){
+		var target = $(event.target);
+		if(target.hasClass('remove')){
+			var datas={
+				'_method' : 'DELETE'
+			};
+			var id = target.attr('profileId');
+			$.ajax({
+				dataType : "json",
+				type : "POST",
+				url : "profile/"+id,
+				data : datas
+			}).done(function(){
+				profile();
+			});	
 		}else if(target.hasClass('update')){
 			var id = target.attr('profileId');
 			currentId = id;
@@ -201,7 +158,6 @@ $(function(){
 				$('#pfname').val(id.name);
 				$('#pfcp').val(id.company);
 				$('#pfmw').val(id.majorwork);
-				$('#link').val(id.link);
 			});
 		}
 	});
@@ -209,13 +165,11 @@ $(function(){
 			console.log($('#pfname').val());
 			console.log($('#pfcp').val());
 			console.log($('#pfmw').val());
-			console.log($('#link').val());
 			
 			var datas = {
 					name : $('#pfname').val(),
 					company : $('#pfcp').val(),
 					majorwork : $('#pfmw').val(),
-					link : $('#link').val()
 			};
 			
 			if(currentId != 0){
@@ -235,7 +189,6 @@ $(function(){
 				$('#pfname').val('');
 				$('#pfcp').val('');
 				$('#pfmw').val('');
-				$('#link').val('');
 			});
 		});
 		profile();
