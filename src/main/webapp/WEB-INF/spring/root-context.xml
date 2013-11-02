@@ -9,6 +9,26 @@
 	<import resource="classpath:/META-INF/spring/cache.xml"/>	
 		
 	<context:component-scan base-package="com.profile.test" >
-	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json</value>
+							<value>application/*+json</value>
+							<value>application/xml</value>
+							<value>text/javascript</value>
+							<value>text/html</value>
+							<value>text/json</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
 </beans>

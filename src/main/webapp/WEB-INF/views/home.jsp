@@ -25,12 +25,12 @@
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	              </button>
-	              <a class="navbar-brand" href="#">Star Information</a>
+	              <a class="navbar-brand" href="#">Information</a>
 	            </div>
 	            <div class="navbar-collapse collapse">
 	              <ul class="nav navbar-nav">
-	                <li class="active"><a href="home">Star Profile</a></li>
-	                <li><a href="#about">Movie</a></li>
+	                <li class="active"><a href="home">EnterTainment</a></li>
+	                <li><a href="#about">Sports</a></li>
 	                <li><a href="#contact">Contact</a></li>
 	                <li class="dropdown">
 	              </ul>
@@ -43,7 +43,7 @@
 	    
  <div class="container">
  	<div class="row">
- 		<div class="col-md-offset-3 col-xs-6 col-md-4">
+ 		<div class="col-xs-6 col-md-4">
 			<table class="table">
 				<tr class = "active">
 					<td>name : </td>
@@ -59,15 +59,16 @@
 				</tr>
 			</table>
 			<button id="saveBt" class="btn btn-primary">Save</button>
+			<h3 id="tables-contextual-classes">Star ProFile</h3>
+		<div id = "profileSection"></div>
+ 		</div>
+ 		<div class="col-md-8" >
+ 			<div id="newsSection"></div>
  		</div>
  	</div>
- 	<div class="row">
-		<h3 id="tables-contextual-classes">Star ProFile</h3>
-		<div id = "profileSection"></div>
-	</div>
 	
  	<div class="row">
- 		<div class = "col-xs-6 col-md-4">
+ 		<div class = "col-xs-6 col-md-4" >
 			<input type="text" id="search">
 			<button id="searchBt" class="btn btn-success">SearCh</button>
 		</div>
@@ -77,11 +78,27 @@
  	</div>
  </div>
 
-
-
 <script type="text/javascript">
 $(function(){
 	var currentId = 0;
+	
+	var showNews = function(){
+		$.getJSON('news', function(data){
+			var item = data.news.socialpick.item;
+			var show = '<table class="table table-bordered table-striped">';
+			for(var i=0; i<item.length;i++){
+				show += '<tr>';
+				show += '<td>'+item[i].rank+'</td>';
+				show += '<td><a href="'+item[i].link+'">'+item[i].keyword+'</a></td>';
+				show += '<td>'+item[i].content.substring(0, 20)+'...</td>';
+				show += '</tr>';
+			}
+			show += '</table>';
+			$('#newsSection').html(show);
+		});
+	};
+	showNews();
+	
 	$('#searchBt').on('click',function(){
 		var searchStar = $('#search').val();
 		$('#search').val('');

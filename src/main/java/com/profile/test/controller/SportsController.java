@@ -3,11 +3,10 @@ package com.profile.test.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-public class MovieController {
+public class SportsController {
 	
-	@RequestMapping(value = {"/", "movie"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "sports"}, method = RequestMethod.GET)
 	public String home() {
-		return "movie";
+		return "sports";
 	}
-
 }
